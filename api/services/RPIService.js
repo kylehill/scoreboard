@@ -55,7 +55,7 @@ exports = module.exports = function(callback, results) {
     
     player.oppsos = (oppsos / (player.gp || 1))
     
-    player.rpi = (player.wpct + player.sos * 2 + player.oppsos) / 4
+    player.rpi = (player.wpct + player.sos + player.oppsos) / 3
   })
   
   // Convert to array, erase games played
