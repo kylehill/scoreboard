@@ -42,4 +42,8 @@ exports = module.exports = [
   { winner: "Vinnie", loser: "Greg", score: 11},
   { winner: "Vinnie", loser: "Kyle H", score: 11},
   { winner: "Vinnie", loser: "Hunter", score: 13},
+  
+  { winner: "Greg", loser: "Kyle H", score: 17 },
+  { winner: "Alex", loser: "Kyle B", score: 16 },
+  { winner: "Kyle B", loser: "Diego", score: 16 },
 ]
