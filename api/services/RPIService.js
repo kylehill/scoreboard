@@ -63,6 +63,8 @@ exports = module.exports = function(callback, results) {
     return ld.omit(player, "wins", "losses", "played")
   })
   
+  players = ld.filter(players, function(player){ return player.gp > 0 })
+  
   // Sort by RPI
   var all = ld.sortBy(players, function(player){ return (player.rpi * -1) })
   
