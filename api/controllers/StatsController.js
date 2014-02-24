@@ -1,43 +1,24 @@
 var async = require("async")
-var moment = require("moment")
 
 module.exports = {
 
   _config: {},
   
-  rpi: function(req, res, next) {
+  display: function(req, res, next) {
     
-    async.auto({
-      
-      games: function(complete) {
-        Game.find({}, complete)
-      },
-      
-      players: function(complete) {
-        Player.find({}, complete)
-      },
-      
-      calculate: ["games", "players", RPIService]
-      
-    }, function(err, results){ res.json(results.calculate) })
+    DisplayService(function(err, results){ res.json(results) })
+    
+  },
+  
+  rpi_lifetime: function(req, res, next) {
+    
+    LifetimeRPIService(function(err, results){ res.json(results) })
     
   },
   
   rpi_week: function(req, res, next) {
     
-    async.auto({
-      
-      games: function(complete) {
-        Game.find({ createdAt: { ">": new moment().startOf("week").toDate() }}, complete)
-      },
-      
-      players: function(complete) {
-        Player.find({}, complete)
-      },
-      
-      calculate: ["games", "players", RPIService]
-      
-    }, function(err, results){ res.json(results.calculate) })
+    WeeklyRPIService(function(err, results){ res.json(results) })
     
   }
   

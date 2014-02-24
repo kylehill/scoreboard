@@ -4,7 +4,7 @@ var ld = require("lodash")
 exports = module.exports = function(callback, results) {
   
   var players = ld.reduce(results.players, function(mem, player) {
-    mem[player.id] = { name: player.name, gw: 0, gl: 0, gp: 0, wins: {}, losses: {}, played: {} }
+    mem[player.id] = { name: player.name, id: player.id, gw: 0, gl: 0, gp: 0, wins: {}, losses: {}, played: {} }
     return mem
   }, {})
   
