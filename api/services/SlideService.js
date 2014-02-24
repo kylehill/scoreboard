@@ -22,6 +22,8 @@ exports = module.exports = {
   results: function(title, data, opts){
     opts = opts || {}
 
+    console.log(data)
+
     var slide = {
       id: titleize(title),
       title: title,
@@ -36,8 +38,17 @@ exports = module.exports = {
     return slide
   },
 
-  profile: function(title, data){
+  profile: function(title, data, opts){
+    opts = opts || {}
 
+    var slide = {
+      id: titleize(title),
+      title: title,
+      style: "profile",
+      data: data
+    }
+
+    return slide
   }
 
 }

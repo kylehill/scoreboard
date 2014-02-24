@@ -4,15 +4,17 @@ var ld = require("lodash")
 exports = module.exports = function(callback, data, id) {
    var self = ld.find(data.players, function(player){ return player.id === id })
 
+   // Get a chronological list of all games
    var games = ld.filter(data.games, function(game){ return (game.winner === id || game.loser === id) }).reverse()
-   var gw = ld.filter(games, function(game){ return game.winner === id })
-   var gl = ld.filter(games, function(game){ return game.loser === id })
 
-   self.last = ld.last(games, 10)
+   // Count wins and losses
+   self.gw = ld.reduce(games, function(mem, game){ return (game.winner === id ? mem + 1 : mem) }, 0)
+   self.gl = ld.reduce(games, function(mem, game){ return (game.loser === id ? mem + 1 : mem) }, 0)
 
-   self.gw = gw.length
-   self.gl = gl.length
-   
+   // Get the last five games played
+   self.last = ld.last(games, 5)
+
+   // Calculate winning or losing streak
    var streak = { streak: 0, active: true }
    
    if (games[0] && games[0].winner === id) {
@@ -43,8 +45,6 @@ exports = module.exports = function(callback, data, id) {
    }
 
    self.streak = streak.streak
-
-   console.log(self)
 
    callback(null, self)
 }

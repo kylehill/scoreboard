@@ -59,11 +59,15 @@ exports = module.exports = function(callback) {
       slides.push(SlideService.results("Last 10 Games", results.data.lifetime.games, { last: 10 }))
 
       if (results.rpi.lifetime.qualified.length >= 3) {
-        slides.push(SlideService.results("Lifetime RPI", results.rpi.lifetime.qualified))
+        slides.push(SlideService.list("Lifetime RPI", results.rpi.lifetime.qualified))
       }
       if (results.rpi.week.qualified.length >= 3) {
-        slides.push(SlideService.results("Weekly RPI", results.rpi.week.qualified))
+        slides.push(SlideService.list("Weekly RPI", results.rpi.week.qualified))
       }
+
+      ld.each(results.profile, function(profile){
+        slides.push(SlideService.profile(profile.name, profile))
+      })
 
       complete(null, slides)
 

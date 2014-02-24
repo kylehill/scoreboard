@@ -27,7 +27,11 @@ exports = module.exports = {
 
       }]
       
-    }, callback)
+    }, function(err, results){
+
+      callback(err, results.players)
+
+    })
     
   },
   
